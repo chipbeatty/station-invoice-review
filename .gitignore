@@ -1,0 +1,21 @@
+# Data — never commit raw or derived data
+data/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
