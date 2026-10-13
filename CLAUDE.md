@@ -159,9 +159,9 @@ Each step is one session. A step is done when its "Done when" is true.
 
 ## Progress log
 
-Current step: **Step 0**
+Current step: **Step 1**
 
-- (date) — Step 0: ...
+- 2026-10-13 — Step 0 complete: uv package scaffold with src/ layout, dev deps (pytest, ruff, huggingface-hub, pandas, pyarrow), `.gitignore` (data/ and .env protected), `.env.example`, `scripts/download_fcc_subset.py`, 75 PDFs in `data/raw/fcc/pdfs/`, pushed to GitHub.
 
 ## Decisions
 
@@ -175,6 +175,7 @@ Record each decision with a one-line reason.
 - Fetch labels in Step 1: they're first needed there to answer the brief's open questions.
 - Thin CLI over a service layer: a Streamlit UI can be added later without moving logic.
 - Folders appear when their step arrives: future structure is decided when the work is understood.
+- `download_fcc_subset.py` lives in `scripts/`, not the project root: scripts/ is one-off tooling, not product code.
 
 ## Ideas for later
 
