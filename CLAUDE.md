@@ -159,9 +159,10 @@ Each step is one session. A step is done when its "Done when" is true.
 
 ## Progress log
 
-Current step: **Step 1**
+Current step: **Step 2**
 
 - 2026-10-13 — Step 0 complete: uv package scaffold with src/ layout, dev deps (pytest, ruff, huggingface-hub, pandas, pyarrow), `.gitignore` (data/ and .env protected), `.env.example`, `scripts/download_fcc_subset.py`, 75 PDFs in `data/raw/fcc/pdfs/`, pushed to GitHub.
+- 2026-10-13 — Step 1 complete: split created (20 dev / 55 test, seed 42, 7 pre-viewed forced into dev), 75 labels fetched, `extract_text()` written and tested, text extracted for all 75, `docs/DATA_NOTES.md` written answering all open questions.
 
 ## Decisions
 
@@ -176,7 +177,11 @@ Record each decision with a one-line reason.
 - Thin CLI over a service layer: a Streamlit UI can be added later without moving logic.
 - Folders appear when their step arrives: future structure is decided when the work is understood.
 - `download_fcc_subset.py` lives in `scripts/`, not the project root: scripts/ is one-off tooling, not product code.
+- 7 pre-viewed invoices forced into dev set: preserves test-set integrity even though they were opened before the split was created.
+- v1 returns `blocked` for scanned PDFs (no text layer): 35/75 originals are scanned; handling them via Claude vision is deferred.
+- "Line item rates sum to gross" check deferred: `LineItemRate` is a per-spot unit rate, not a line total; the check requires date-range × day-pattern spot counting, which comes later.
 
 ## Ideas for later
 
--
+- Vision-based extraction for scanned PDFs (35/75 originals have no text layer)
+- Spot-count logic: parse date range + day pattern to compute spots per line, enabling the line-item-sum-to-gross check
